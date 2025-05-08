@@ -2,19 +2,13 @@
 <html lang="fi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="description" content="Retro-tyylinen Ping Pong peli ">
-  <meta name="theme-color" content="#001e3c">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Retro Ping Pong</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="crt">
     <div class="game-container">
-      <!-- Robot background created with CSS -->
       <div class="robot">
         <div class="robot-head">
           <div class="robot-eye left"></div>
@@ -28,74 +22,61 @@
         <div class="robot-arm right-arm"></div>
       </div>
       
-      <!-- Game title -->
-      <h1 class="game-title" aria-label="Retro Ping Pong">RETRO PING PONG</h1>
+      <div class="game-title">RETRO PING PONG</div>
       
-      <!-- Main game area -->
-      <main class="game-main">
-        <!-- Full game play area with side controls -->
+      <div class="game-main">
         <div class="game-play-area">
-          <!-- Left side controls - Player 1 -->
-          <div class="side-controls left-controls" aria-label="Pelaaja 1 ohjaimet">
-            <div class="control-section" role="group" aria-labelledby="player1-label">
-              <div id="player1-label" class="control-label">Pelaaja 1</div>
-              <div class="control-key" aria-label="W-näppäin - Liiku ylös">W</div>
+          <div class="side-controls left-controls">
+            <div class="control-section">
+              <div class="control-label">Pelaaja 1</div>
+              <div class="control-key">W</div>
               <div class="control-desc">ylös</div>
-              <div class="control-key" aria-label="S-näppäin - Liiku alas">S</div>
+              <div class="control-key">S</div>
               <div class="control-desc">alas</div>
             </div>
           </div>
-
-          <!-- Center game content -->
           <div class="center-content">
-            <!-- Score display -->
-            <div class="score-container" role="status" aria-live="polite">
+            <div class="score-container">
               <div class="score player">
                 <span class="score-label">Pelaaja 1:</span>
-                <span class="score-value" aria-label="Pelaaja 1 pisteet: 0">0</span>
+                <span class="score-value">0</span>
               </div>
               <div class="score computer">
                 <span class="score-label">Pelaaja 2:</span>
-                <span class="score-value" aria-label="Pelaaja 2 pisteet: 0">0</span>
+                <span class="score-value">0</span>
               </div>
             </div>
             
-            <!-- Game court -->
-            <div class="court" role="application" aria-label="Ping Pong pelikenttä">
-              <div class="paddle left-paddle" aria-label="Pelaaja 1 maila"></div>
-              <div class="ball" aria-label="Pallo"></div>
-              <div class="paddle right-paddle" aria-label="Pelaaja 2 maila"></div>
-              <div class="net" aria-hidden="true"></div>
+            <div class="court">
+              <div class="paddle left-paddle"></div>
+              <div class="ball"></div>
+              <div class="paddle right-paddle"></div>
+              <div class="net"></div>
             </div>
             
-            <!-- Start message -->
-            <div class="start-message" role="alert" aria-live="assertive">Paina välilyöntiä aloittaaksesi</div>
+            <div class="start-message">Paina välilyöntiä aloittaaksesi</div>
           </div>
-
-          <!-- Right side controls - Player 2 -->
-          <div class="side-controls right-controls" aria-label="Pelaaja 2 ohjaimet">
-            <div class="control-section" role="group" aria-labelledby="player2-label">
-              <div id="player2-label" class="control-label">Pelaaja 2</div>
-              <div class="control-key" aria-label="Ylänuoli - Liiku ylös">↑</div>
+          <div class="side-controls right-controls">
+            <div class="control-section">
+              <div class="control-label">Pelaaja 2</div>
+              <div class="control-key">↑</div>
               <div class="control-desc">ylös</div>
-              <div class="control-key" aria-label="Alanuoli - Liiku alas">↓</div>
+              <div class="control-key">↓</div>
               <div class="control-desc">alas</div>
             </div>
           </div>
         </div>
-      </main>
+      </div>
       
-      <!-- Game info at the bottom -->
-      <footer class="game-footer">
-        <!-- Game info -->
-        <div class="game-info" role="region" aria-labelledby="instructions-title">
-          <h2 id="instructions-title" class="info-title">Peliohjeet</h2>
+      <div class="game-footer">
+        <div class="game-info">
+          <div class="info-title">Peliohjeet</div>
           <div class="info-text">
             Liikuta mailaa ylös ja alas ja yritä saada pallo vastustajan ohi.
             Ensimmäinen pelaaja, joka saavuttaa 10 pistettä, voittaa!
           </div>
         </div>
-      </footer>
+      </div>
     </div>
   </div>
 </body>
