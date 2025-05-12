@@ -34,6 +34,7 @@
     justify-content: center;
     align-items: center;
   }
+
   /* CRT screen effect */
   .crt {
     width: 100%;
@@ -48,6 +49,7 @@
     overflow: hidden;
     position: relative;
   }
+
   .crt::before {
     content: "";
     display: block;
@@ -156,6 +158,7 @@
     max-width: 800px;
     box-sizing: border-box;
   }
+
   /* Game title */
   .game-title {
     font-size: 2rem;
@@ -170,6 +173,7 @@
     width: 100%;
     max-width: 700px;
   }
+
   /* Game court styling */
   .court {
     width: 100%;
@@ -183,51 +187,13 @@
     z-index: 3;
     margin: 15px 0;
   }
-  .paddle {
-    width: 20px;
-    height: 120px;
-    background-color: var(--green-seafoam);
-    border-radius: 8px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    box-shadow: var(--green-seafoam-glow);
+
+  #gameCanvas {
+    width: 100%;
+    height: 100%;
+    display:block;
   }
-  .left-paddle {
-    left: 20px;
-    background-color: var(--pink);
-    box-shadow: var(--pink-glow);
-  }
-  .right-paddle {
-    right: 20px;
-  }
-  .ball {
-    width: 25px;
-    height: 25px;
-    background-color: var(--yellow);
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
-  }
-  .net {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: repeating-linear-gradient(
-      to bottom,
-      transparent,
-      transparent 10px,
-      var(--yellow) 10px,
-      var(--yellow) 20px
-    );
-    transform: translateX(-50%);
-    opacity: 0.7;
-  }
+
   /* Score display */
   .score-container {
     display: flex;
@@ -237,6 +203,7 @@
     z-index: 3;
     position: relative;
   }
+
   .score {
     display: flex;
     flex-direction: column;
@@ -247,26 +214,32 @@
     background-color: rgba(0, 40, 70, 0.5);
     box-shadow: 0 0 10px rgba(0, 255, 208, 0.4);
   }
+
   .score-label {
     font-size: 1.2rem;
     margin-bottom: 5px;
     color: var(--text);
   }
+
   .score-value {
     font-size: 2.5rem;
     font-weight: bold;
     color: var(--accent);
     text-shadow: var(--glow);
   }
+
   /* Game controls */
-  .controls {
+  .game-controls {
     display: flex;
-    justify-content: space-around;
-    width: 48%;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     z-index: 3;
     position: relative;
     gap: 20px;
+    margin: 15px 0;
   }
+
   .control-section {
     display: flex;
     flex-direction: column;
@@ -278,12 +251,14 @@
     box-shadow: 0 0 10px rgba(0, 255, 208, 0.4);
     flex: 1;
   }
+
   .control-label {
     font-size: 1.2rem;
     margin-bottom: 10px;
     color: var(--accent);
     text-shadow: 0 0 5px var(--accent);
   }
+
   .control-key {
     display: flex;
     align-items: center;
@@ -299,11 +274,13 @@
     text-shadow: 0 0 5px var(--accent);
     box-shadow: 0 0 8px var(--accent);
   }
+
   .control-desc {
     font-size: 0.9rem;
     margin-bottom: 10px;
     color: var(--text);
   }
+
   /* Start message */
   .start-message {
     font-size: 1.6rem;
@@ -316,6 +293,7 @@
     animation: pulse-yellow 1.5s infinite alternate;
     width: 100%;
   }
+
   @keyframes pulse-yellow {
     from {
       opacity: 0.7;
@@ -326,6 +304,7 @@
       text-shadow: 0 0 15px var(--yellow), 0 0 30px var(--yellow), 0 0 45px var(--yellow);
     }
   }
+
   /* Game info */
   .game-info {
     width: 90%;
@@ -338,6 +317,7 @@
     z-index: 3;
     margin-bottom: 10px;
   }
+
   .info-title {
     font-size: 1.2rem;
     margin-bottom: 5px;
@@ -345,12 +325,14 @@
     text-shadow: 0 0 5px var(--accent);
     text-align: center;
   }
+
   .info-text {
     font-size: 0.9rem;
     line-height: 1.3;
     color: var(--text);
     text-align: center;
   }
+
   /* Robot background using CSS */
   .robot {
     position: absolute;
@@ -363,6 +345,7 @@
     height: 400px;
     pointer-events: none;
   }
+
   .robot-head {
     width: 150px;
     height: 120px;
@@ -374,6 +357,7 @@
     border: 4px solid var(--yellow);
     box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
   }
+
   .robot-eye {
     width: 30px;
     height: 30px;
@@ -384,6 +368,7 @@
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5), 0 0 15px var(--yellow);
     animation: blink 4s infinite;
   }
+
   @keyframes blink {
     0%, 45%, 55%, 100% {
       opacity: 1;
@@ -394,13 +379,16 @@
       background-color: var(--primary);
     }
   }
+
   .robot-eye.left {
     left: 30px;
     animation-delay: 0.5s;
   }
+
   .robot-eye.right {
     right: 30px;
   }
+
   .robot-antenna {
     width: 10px;
     height: 40px;
@@ -412,6 +400,7 @@
     border-radius: 10px;
     box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
   }
+
   .robot-antenna::after {
     content: "";
     position: absolute;
@@ -425,6 +414,7 @@
     box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
     animation: pulse-yellow 2s infinite alternate;
   }
+
   .robot-body {
     width: 180px;
     height: 200px;
@@ -438,6 +428,7 @@
     box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
     animation: hover 3s ease-in-out infinite;
   }
+
   @keyframes hover {
     0%, 100% {
       transform: translateX(-50%) translateY(0);
@@ -446,6 +437,7 @@
       transform: translateX(-50%) translateY(-10px);
     }
   }
+
   .robot-panel {
     width: 100px;
     height: 80px;
@@ -458,6 +450,7 @@
     border: 2px solid var(--accent);
     box-shadow: inset 0 0 10px var(--accent);
   }
+
   .robot-panel::before, .robot-panel::after {
     content: "";
     position: absolute;
@@ -468,14 +461,17 @@
     top: 20px;
     box-shadow: 0 0 8px var(--yellow);
   }
+
   .robot-panel::before {
     left: 20px;
     animation: pulse-yellow 1s infinite alternate;
   }
+
   .robot-panel::after {
     right: 20px;
     animation: pulse-yellow 1.3s infinite alternate;
   }
+
   .robot-arm {
     width: 30px;
     height: 150px;
@@ -486,170 +482,86 @@
     border: 4px solid var(--yellow);
     box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
   }
+
   .robot-arm.left-arm {
     left: -10px;
     transform: rotate(20deg);
   }
+
   .robot-arm.right-arm {
     right: -10px;
     transform: rotate(-20deg);
   }
+
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .game-container {
       padding: 10px;
       gap: 10px;
     }
-    
     .game-title {
-      font-size: 2rem;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-    }
-    
-    .game-play-area {
-      flex-direction: column;
-      gap: 10px;
-    }
-    
-    .side-controls {
-      width: 100%;
+      font-size: 1.5rem;
       margin-top: 10px;
-      flex-direction: row;
-      gap: 10px;
     }
-    
-    .left-controls, .right-controls {
-      width: 48%;
-    }
-    
     .court {
       height: 30vh;
-      margin: 10px 0;
     }
-    
-    .paddle {
-      height: 70px;
-      width: 15px;
-    }
-    
-    .left-paddle {
-      left: 20px;
-    }
-    
-    .right-paddle {
-      right: 20px;
-    }
-    
-    .ball {
-      width: 20px;
-      height: 20px;
-    }
-    
-    .score {
-      padding: 8px 15px;
-    }
-    
-    .score-label {
-      font-size: 1rem;
-    }
-    
-    .score-value {
-      font-size: 2rem;
-    }
-    
-    .score-container {
-      flex-direction: row;
-      justify-content: space-around;
-      gap: 10px;
-      margin: 10px 0;
-    }
-    
-    .game-footer {
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-      margin-top: 5px;
-    }
-    
-    .controls, .game-info {
-      width: 100%;
-    }
-    
-    .control-section {
-      padding: 8px;
-    }
-    
-    .control-key {
-      width: 35px;
-      height: 35px;
-      font-size: 1rem;
-    }
-    
-    .start-message {
-      font-size: 1.4rem;
-      padding: 5px;
-    }
-    
-    .info-title {
-      font-size: 1.1rem;
-    }
-    
-    .info-text {
-      font-size: 0.9rem;
-    }
-    
-    .robot {
-      transform: translate(-50%, -40%) scale(0.6);
-      opacity: 0.15;
-    }
-  }
-  @media (max-width: 480px) {
-    .game-title {
-      font-size: 1.8rem;
-    }
-    
-    .game-play-area {
-      flex-direction: column;
-    }
-    
     .side-controls {
-      width: 100%;
-      flex-direction: row;
+      width: 80px;
+      margin-top: 20px;
     }
-    
-    .left-controls, .right-controls {
-      width: 48%;
-    }
-    
-    .court {
-      height: 30vh;
-    }
-    
-    .paddle {
-      height: 60px;
-      width: 12px;
-    }
-    
-    .left-paddle {
-      left: 15px;
-    }
-    
-    .right-paddle {
-      right: 15px;
-    }
-    
-    .score-container {
-      flex-direction: column;
-      align-items: center;
-    }
-    
     .control-key {
       width: 30px;
       height: 30px;
+      font-size: 1rem;
     }
-    
-    .control-section {
+    .score-value {
+      font-size: 2rem;
+    }
+    .start-message {
+      font-size: 1.2rem;
+    }
+  }
+
+  /* Sound button styles */
+  #restart-button, #sound-toggle {
+    padding: 8px 15px;
+    background-color: var(--yellow);
+    color: var(--primary-dark);
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    box-shadow: 0 0 8px var(--yellow);
+  }
+
+  #sound-toggle.sound-on {
+    background-color: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+  }
+
+  #sound-toggle.sound-off {
+    background-color: #666;
+    box-shadow: 0 0 8px #555;
+  }
+
+  @media (max-width: 480px) {
+    .game-play-area {
+      flex-direction: column;
+    }
+    .side-controls {
       width: 100%;
+      flex-direction: row;
+      justify-content: space-around;
+      margin: 10px 0;
+    }
+    .control-section {
+      width: 45%;
+    }
+    .game-controls {
+      flex-direction: column;
+      gap: 10px;
     }
   }

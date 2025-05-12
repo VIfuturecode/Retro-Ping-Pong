@@ -1,83 +1,87 @@
 <!DOCTYPE html>
 <html lang="fi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Retro Ping Pong</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Ping Pong</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="crt">
-    <div class="game-container">
-      <div class="robot">
-        <div class="robot-head">
-          <div class="robot-eye left"></div>
-          <div class="robot-eye right"></div>
-          <div class="robot-antenna"></div>
-        </div>
-        <div class="robot-body">
-          <div class="robot-panel"></div>
-        </div>
-        <div class="robot-arm left-arm"></div>
-        <div class="robot-arm right-arm"></div>
-      </div>
-      
-      <div class="game-title">RETRO PING PONG</div>
-      
-      <div class="game-main">
-        <div class="game-play-area">
-          <div class="side-controls left-controls">
-            <div class="control-section">
-              <div class="control-label">Pelaaja 1</div>
-              <div class="control-key">W</div>
-              <div class="control-desc">ylös</div>
-              <div class="control-key">S</div>
-              <div class="control-desc">alas</div>
+    <div class="crt">
+        <div class="game-container">
+            <div class="robot">
+                <div class="robot-head">
+                    <div class="robot-eye left"></div>
+                    <div class="robot-eye right"></div>
+                    <div class="robot-antenna"></div>
+                </div>
+                <div class="robot-body">
+                    <div class="robot-panel"></div>
+                </div>
+                <div class="robot-arm left-arm"></div>
+                <div class="robot-arm right-arm"></div>
             </div>
-          </div>
-          <div class="center-content">
-            <div class="score-container">
-              <div class="score player">
-                <span class="score-label">Pelaaja 1:</span>
-                <span class="score-value">0</span>
-              </div>
-              <div class="score computer">
-                <span class="score-label">Pelaaja 2:</span>
-                <span class="score-value">0</span>
-              </div>
+
+            <div class="game-title">RETRO PING PONG</div>
+
+            <div class="game-main">
+                <div class="game-play-area">
+                    <div class="side-controls left-controls">
+                        <div class="control-section">
+                            <div class="control-label">Pelaaja 1</div>
+                            <div class="control-key">W</div>
+                            <div class="control-desc">ylös</div>
+                            <div class="control-key">S</div>
+                            <div class="control-desc">alas</div>
+                        </div>
+                    </div>
+                    <div class="center-content">
+                        <div class="score-container">
+                            <div class="score player">
+                                <span class="score-label">Pelaaja 1:</span>
+                                <span class="score-value" id="player1-score">0</span>
+                            </div>
+                            <div class="score computer">
+                                <span class="score-label">Pelaaja 2:</span>
+                                <span class="score-value" id="player2-score">0</span>
+                            </div>
+                        </div>
+
+                        <div class="court">
+                            <canvas id="gameCanvas"></canvas>
+                        </div>
+
+                        <div class="start-message" id="start-message">Paina välilyöntiä aloittaaksesi</div>
+                    </div>
+
+                    <div class="side-controls right-controls">
+                        <div class="control-section">
+                            <div class="control-label">Pelaaja 2</div>
+                            <div class="control-key">↑</div>
+                            <div class="control-desc">ylös</div>
+                            <div class="control-key">↓</div>
+                            <div class="control-desc">alas</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="game-controls">
+                    <button id="restart-button">Aloita uusi peli</button>
+                    <button id="sound-toggle" class="sound-on">Ääni: Päällä</button>
+                </div>
             </div>
-            
-            <div class="court">
-              <div class="paddle left-paddle"></div>
-              <div class="ball"></div>
-              <div class="paddle right-paddle"></div>
-              <div class="net"></div>
+
+            <div class="game-footer">
+                <div class="game-info">
+                    <div class="info-title">Peliohjeet</div>
+                    <div class="info-text">
+                        Liikuta mailaa ylös ja yritä saada pallo vastustajan ohi.
+                        Ensimmäinen pelaaja, joka saavuttaa 10 pistettä, voittaa!
+                    </div>
+                </div>
             </div>
-            
-            <div class="start-message">Paina välilyöntiä aloittaaksesi</div>
-          </div>
-          <div class="side-controls right-controls">
-            <div class="control-section">
-              <div class="control-label">Pelaaja 2</div>
-              <div class="control-key">↑</div>
-              <div class="control-desc">ylös</div>
-              <div class="control-key">↓</div>
-              <div class="control-desc">alas</div>
-            </div>
-          </div>
         </div>
-      </div>
-      
-      <div class="game-footer">
-        <div class="game-info">
-          <div class="info-title">Peliohjeet</div>
-          <div class="info-text">
-            Liikuta mailaa ylös ja alas ja yritä saada pallo vastustajan ohi.
-            Ensimmäinen pelaaja, joka saavuttaa 10 pistettä, voittaa!
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
+    <script src="game.js" type="module"></script>
 </body>
 </html>
