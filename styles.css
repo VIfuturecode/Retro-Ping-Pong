@@ -1,11 +1,11 @@
-/* Reset and base styles */
+/* Nollaus ja perustyylit*/
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
   :root {
-    /* Game colors - green-blue scheme with yellow */
+    /* Pelin värit - vihreä-sininen teema keltaisella */
     --primary-dark: #002233;
     --primary: #00496a;
     --primary-light: #0080b3;
@@ -34,8 +34,8 @@
     justify-content: center;
     align-items: center;
   }
-
-  /* CRT screen effect */
+  
+  /* RT-näyttöefekti */
   .crt {
     width: 100%;
     height: 100%;
@@ -49,7 +49,7 @@
     overflow: hidden;
     position: relative;
   }
-
+  
   .crt::before {
     content: "";
     display: block;
@@ -59,8 +59,8 @@
     right: 0;
     bottom: 0;
     background: linear-gradient(
-      rgba(18, 16, 16, 0) 50%,
-      rgba(0, 0, 0, 0.25) 50%
+        rgba(18, 16, 16, 0) 50%,
+        rgba(0, 0, 0, 0.25) 50%
     );
     background-size: 100% 4px;
     pointer-events: none;
@@ -75,10 +75,10 @@
     right: 0;
     bottom: 0;
     background: radial-gradient(
-      circle at center,
-      rgba(0, 80, 120, 0.1) 0%,
-      rgba(0, 40, 60, 0.2) 80%,
-      rgba(0, 30, 50, 0.4) 100%
+        circle at center,
+        rgba(0, 80, 120, 0.1) 0%,
+        rgba(0, 40, 60, 0.2) 80%,
+        rgba(0, 30, 50, 0.4) 100%
     );
     pointer-events: none;
     z-index: 9;
@@ -148,6 +148,20 @@
     text-shadow: 0 0 5px var(--pink);
     box-shadow: 0 0 8px var(--pink);
   }
+  .right-controls .control-section {
+    border-color: var(--green-seafoam);
+    box-shadow: 0 0 6px rgba(32, 224, 128, 0.4);
+  }
+  .right-controls .control-label {
+    color: var(--green-seafoam);
+    text-shadow: 0 0 3px var(--green-seafoam);
+  }
+  .right-controls .control-key {
+    border-color: var(--green-seafoam);
+    color: var(--green-seafoam);
+    text-shadow: 0 0 3px var(--green-seafoam);
+    box-shadow: 0 0 5px var(--green-seafoam);
+  }
   .game-footer {
     width: 100%;
     display: flex;
@@ -158,8 +172,8 @@
     max-width: 800px;
     box-sizing: border-box;
   }
-
-  /* Game title */
+  
+  /* Pelin otsikko */
   .game-title {
     font-size: 2rem;
     font-weight: bold;
@@ -173,8 +187,8 @@
     width: 100%;
     max-width: 700px;
   }
-
-  /* Game court styling */
+  
+  /* Pelikentän tyylit */
   .court {
     width: 100%;
     height: 40vh;
@@ -187,23 +201,27 @@
     z-index: 3;
     margin: 15px 0;
   }
-
+  
   #gameCanvas {
     width: 100%;
     height: 100%;
-    display:block;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
   }
-
-  /* Score display */
+  
+  /* Pistenäyttö */
   .score-container {
     display: flex;
     justify-content: space-around;
     width: 100%;
     margin: 20px 0;
-    z-index: 3;
+    z-index: 4;
     position: relative;
   }
-
+  
   .score {
     display: flex;
     flex-direction: column;
@@ -214,32 +232,31 @@
     background-color: rgba(0, 40, 70, 0.5);
     box-shadow: 0 0 10px rgba(0, 255, 208, 0.4);
   }
-
+  
   .score-label {
     font-size: 1.2rem;
     margin-bottom: 5px;
     color: var(--text);
   }
-
+  
   .score-value {
     font-size: 2.5rem;
     font-weight: bold;
     color: var(--accent);
     text-shadow: var(--glow);
   }
-
-  /* Game controls */
+  
+  /* Pelin ohjaimet */
   .game-controls {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    z-index: 3;
-    position: relative;
+    margin-top: 20px;
     gap: 20px;
-    margin: 15px 0;
+    z-index: 4;
   }
-
+  
   .control-section {
     display: flex;
     flex-direction: column;
@@ -251,14 +268,14 @@
     box-shadow: 0 0 10px rgba(0, 255, 208, 0.4);
     flex: 1;
   }
-
+  
   .control-label {
     font-size: 1.2rem;
     margin-bottom: 10px;
     color: var(--accent);
     text-shadow: 0 0 5px var(--accent);
   }
-
+  
   .control-key {
     display: flex;
     align-items: center;
@@ -274,14 +291,14 @@
     text-shadow: 0 0 5px var(--accent);
     box-shadow: 0 0 8px var(--accent);
   }
-
+  
   .control-desc {
     font-size: 0.9rem;
     margin-bottom: 10px;
     color: var(--text);
   }
-
-  /* Start message */
+  
+  /* Aloitusviesti */
   .start-message {
     font-size: 1.6rem;
     color: var(--yellow);
@@ -289,23 +306,23 @@
     text-align: center;
     padding: 8px;
     position: relative;
-    z-index: 3;
+    z-index: 5;
     animation: pulse-yellow 1.5s infinite alternate;
     width: 100%;
   }
-
+  
   @keyframes pulse-yellow {
     from {
-      opacity: 0.7;
-      text-shadow: 0 0 5px var(--yellow);
+        opacity: 0.7;
+        text-shadow: 0 0 5px var(--yellow);
     }
     to {
-      opacity: 1;
-      text-shadow: 0 0 15px var(--yellow), 0 0 30px var(--yellow), 0 0 45px var(--yellow);
+        opacity: 1;
+        text-shadow: 0 0 15px var(--yellow), 0 0 30px var(--yellow), 0 0 45px var(--yellow);
     }
   }
-
-  /* Game info */
+  
+  /* Pelin info */
   .game-info {
     width: 90%;
     border: 2px solid var(--primary-light);
@@ -317,7 +334,7 @@
     z-index: 3;
     margin-bottom: 10px;
   }
-
+  
   .info-title {
     font-size: 1.2rem;
     margin-bottom: 5px;
@@ -325,15 +342,15 @@
     text-shadow: 0 0 5px var(--accent);
     text-align: center;
   }
-
+  
   .info-text {
     font-size: 0.9rem;
     line-height: 1.3;
     color: var(--text);
     text-align: center;
   }
-
-  /* Robot background using CSS */
+  
+  /* Robottitausta CSS:llä */
   .robot {
     position: absolute;
     top: 53%;
@@ -345,7 +362,7 @@
     height: 400px;
     pointer-events: none;
   }
-
+  
   .robot-head {
     width: 150px;
     height: 120px;
@@ -357,7 +374,7 @@
     border: 4px solid var(--yellow);
     box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
   }
-
+  
   .robot-eye {
     width: 30px;
     height: 30px;
@@ -368,27 +385,27 @@
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5), 0 0 15px var(--yellow);
     animation: blink 4s infinite;
   }
-
+  
   @keyframes blink {
     0%, 45%, 55%, 100% {
-      opacity: 1;
-      background-color: var(--green);
+        opacity: 1;
+        background-color: var(--green);
     }
     50% {
-      opacity: 0.3;
-      background-color: var(--primary);
+        opacity: 0.3;
+        background-color: var(--primary);
     }
   }
-
+  
   .robot-eye.left {
     left: 30px;
     animation-delay: 0.5s;
   }
-
+  
   .robot-eye.right {
     right: 30px;
   }
-
+  
   .robot-antenna {
     width: 10px;
     height: 40px;
@@ -400,7 +417,7 @@
     border-radius: 10px;
     box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
   }
-
+  
   .robot-antenna::after {
     content: "";
     position: absolute;
@@ -414,7 +431,7 @@
     box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
     animation: pulse-yellow 2s infinite alternate;
   }
-
+  
   .robot-body {
     width: 180px;
     height: 200px;
@@ -428,16 +445,16 @@
     box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
     animation: hover 3s ease-in-out infinite;
   }
-
+  
   @keyframes hover {
     0%, 100% {
-      transform: translateX(-50%) translateY(0);
+        transform: translateX(-50%) translateY(0);
     }
     50% {
-      transform: translateX(-50%) translateY(-10px);
+        transform: translateX(-50%) translateY(-10px);
     }
   }
-
+  
   .robot-panel {
     width: 100px;
     height: 80px;
@@ -450,7 +467,7 @@
     border: 2px solid var(--accent);
     box-shadow: inset 0 0 10px var(--accent);
   }
-
+  
   .robot-panel::before, .robot-panel::after {
     content: "";
     position: absolute;
@@ -461,17 +478,17 @@
     top: 20px;
     box-shadow: 0 0 8px var(--yellow);
   }
-
+  
   .robot-panel::before {
     left: 20px;
     animation: pulse-yellow 1s infinite alternate;
   }
-
+  
   .robot-panel::after {
     right: 20px;
     animation: pulse-yellow 1.3s infinite alternate;
   }
-
+  
   .robot-arm {
     width: 30px;
     height: 150px;
@@ -482,88 +499,99 @@
     border: 4px solid var(--yellow);
     box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
   }
-
+  
   .robot-arm.left-arm {
     left: -10px;
     transform: rotate(20deg);
   }
-
+  
   .robot-arm.right-arm {
     right: -10px;
     transform: rotate(-20deg);
   }
-
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .game-container {
-      padding: 10px;
-      gap: 10px;
-    }
-    .game-title {
-      font-size: 1.5rem;
-      margin-top: 10px;
-    }
-    .court {
-      height: 30vh;
-    }
-    .side-controls {
-      width: 80px;
-      margin-top: 20px;
-    }
-    .control-key {
-      width: 30px;
-      height: 30px;
-      font-size: 1rem;
-    }
-    .score-value {
-      font-size: 2rem;
-    }
-    .start-message {
-      font-size: 1.2rem;
-    }
+  
+  /* Painikkeen muotoilu */
+  #sound-toggle {
+    padding: 10px 20px;
+    background-color: var(--accent);
+    color: var(--primary-dark);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    transition: all 0.3s ease;
   }
-
-  /* Sound button styles */
-  #restart-button, #sound-toggle {
-    padding: 8px 15px;
+  
+  #sound-toggle.sound-on {
+    background-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+  }
+  
+  #sound-toggle.sound-off {
+    background-color: #666;
+    box-shadow: 0 0 10px #555;
+  }
+  
+  #restart-button {
+    padding: 10px 20px;
     background-color: var(--yellow);
     color: var(--primary-dark);
     border: none;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     cursor: pointer;
+    box-shadow: 0 0 10px var(--yellow);
     font-family: 'Courier New', monospace;
     font-weight: bold;
-    box-shadow: 0 0 8px var(--yellow);
   }
-
-  #sound-toggle.sound-on {
-    background-color: var(--accent);
-    box-shadow: 0 0 8px var(--accent);
-  }
-
-  #sound-toggle.sound-off {
-    background-color: #666;
-    box-shadow: 0 0 8px #555;
-  }
-
-  @media (max-width: 480px) {
-    .game-play-area {
-      flex-direction: column;
+  
+  /* Responsiivinen säätö */
+  @media (max-width: 768px) {
+    .game-container {
+        padding: 10px;
+        gap: 10px;
+    }
+    .game-title {
+        font-size: 1.5rem;
+        margin-top: 10px;
+    }
+    .court {
+        height: 30vh;
     }
     .side-controls {
-      width: 100%;
-      flex-direction: row;
-      justify-content: space-around;
-      margin: 10px 0;
+        width: 80px;
+        margin-top: 20px;
     }
-    .control-section {
-      width: 45%;
+    .control-key {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+    .score-value {
+        font-size: 2rem;
+    }
+    .start-message {
+        font-size: 1.2rem;
     }
     .game-controls {
-      flex-direction: column;
-      gap: 10px;
+        flex-direction: column;
+        gap: 10px;
     }
   }
-
   
+  @media (max-width: 480px) {
+    .game-play-area {
+        flex-direction: column;
+    }
+    .side-controls {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        margin: 10px 0;
+    }
+    .control-section {
+        width: 45%;
+    }
+  }

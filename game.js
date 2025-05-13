@@ -312,6 +312,7 @@ const GAME_STATES = {
     
     // Skaala mailojen koko kentän korkeuden mukaan
     const paddleHeightRatio = 0.25; // Mailan korkeus prosentteina kentän korkeudesta
+    paddle1.height = canvas.height * paddleHeightRatio;
     paddle2.height = canvas.height * paddleHeightRatio;
     
     // Keskitä mailat pystysuunnassa
@@ -562,4 +563,3 @@ const GAME_STATES = {
     console.log('Dokumentti oli jo ladattu kun skripti suoritettiin, alustetaan peli viiveellä');
     setTimeout(init, 100); // Pieni viive varmistamaan että DOM on täysin käsitelty
   }
-  

@@ -9,23 +9,23 @@
 <body>
     <div class="crt">
         <div class="game-container">
-            <div class="robot">
-                <div class="robot-head">
-                    <div class="robot-eye left"></div>
-                    <div class="robot-eye right"></div>
-                    <div class="robot-antenna"></div>
-                </div>
-                <div class="robot-body">
-                    <div class="robot-panel"></div>
-                </div>
-                <div class="robot-arm left-arm"></div>
-                <div class="robot-arm right-arm"></div>
-            </div>
-
             <div class="game-title">RETRO PING PONG</div>
 
             <div class="game-main">
+                <!-- Player scores at top -->
+                <div class="score-container">
+                    <div class="score player">
+                        <span class="score-label">Pelaaja 1:</span>
+                        <span class="score-value" id="player1-score">0</span>
+                    </div>
+                    <div class="score computer">
+                        <span class="score-label">Pelaaja 2:</span>
+                        <span class="score-value" id="player2-score">0</span>
+                    </div>
+                </div>
+                
                 <div class="game-play-area">
+                    <!-- Left controls -->
                     <div class="side-controls left-controls">
                         <div class="control-section">
                             <div class="control-label">Pelaaja 1</div>
@@ -35,25 +35,28 @@
                             <div class="control-desc">alas</div>
                         </div>
                     </div>
+                    
+                    <!-- Game court -->
                     <div class="center-content">
-                        <div class="score-container">
-                            <div class="score player">
-                                <span class="score-label">Pelaaja 1:</span>
-                                <span class="score-value" id="player1-score">0</span>
-                            </div>
-                            <div class="score computer">
-                                <span class="score-label">Pelaaja 2:</span>
-                                <span class="score-value" id="player2-score">0</span>
-                            </div>
-                        </div>
-
                         <div class="court">
+                            <!-- Robot CSS Drawing inside the court -->
+                            <div class="robot">
+                                <div class="robot-head">
+                                    <div class="robot-eye left"></div>
+                                    <div class="robot-eye right"></div>
+                                    <div class="robot-antenna"></div>
+                                </div>
+                                <div class="robot-body">
+                                    <div class="robot-panel"></div>
+                                </div>
+                                <div class="robot-arm left-arm"></div>
+                                <div class="robot-arm right-arm"></div>
+                            </div>
                             <canvas id="gameCanvas"></canvas>
                         </div>
-
-                        <div class="start-message" id="start-message">Paina välilyöntiä aloittaaksesi</div>
                     </div>
-
+                    
+                    <!-- Right controls -->
                     <div class="side-controls right-controls">
                         <div class="control-section">
                             <div class="control-label">Pelaaja 2</div>
@@ -65,9 +68,17 @@
                     </div>
                 </div>
                 
+                <!-- Start message under the court -->
+                <div class="start-message" id="start-message">Paina välilyöntiä aloittaaksesi!</div>
+                
                 <div class="game-controls">
+                    <!-- Restart button -->
                     <button id="restart-button">Aloita uusi peli</button>
-                    <button id="sound-toggle" class="sound-on">Ääni: Päällä</button>
+                    
+                    <!-- Sound toggle button -->
+                    <div class="sound-control">
+                        <button id="sound-toggle" class="sound-on">Ääni: Päällä</button>
+                    </div>
                 </div>
             </div>
 
@@ -75,13 +86,13 @@
                 <div class="game-info">
                     <div class="info-title">Peliohjeet</div>
                     <div class="info-text">
-                        Liikuta mailaa ylös ja yritä saada pallo vastustajan ohi.
-                        Ensimmäinen pelaaja, joka saavuttaa 10 pistettä, voittaa!
+                        Liikuta mailaa ylös ja alas ja yritä saada pallo vastustajan mailaan. Ensimmäinen pelaaja, joka saa 10 pistettä, voittaa!
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="game.js" type="module"></script>
+    
+    <script src="game.js"></script>
 </body>
 </html>
