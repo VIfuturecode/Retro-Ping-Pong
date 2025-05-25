@@ -2,7 +2,7 @@
 <html lang="fi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Retro Ping Pong</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -10,25 +10,20 @@
     <div class="crt">
         <div class="game-container">
             <div class="game-title">RETRO PING PONG</div>
-
+           
+            <div class="game-controls">
+                <label for="opponent-select"><strong>Valitse vastustaja:</strong></label>
+                <select id="opponent-select">
+                    <option value="computer" selected>🤖 Tietokone</option>
+                    <option value="human">👥 Ihminen</option>
+                </select>
+            </div>
+           
             <div class="game-main">
-                <!-- Pelaajien pisteet ylhäällä -->
-                <div class="score-container">
-                    <div class="score player">
-                        <span class="score-label">Pelaaja 1:</span>
-                        <span class="score-value" id="player1-score">0</span>
-                    </div>
-                    <div class="score computer">
-                        <span class="score-label">Pelaaja 2:</span>
-                        <span class="score-value" id="player2-score">0</span>
-                    </div>
-                </div>
-                
                 <div class="game-play-area">
-                    <!-- Vasemman puolen ohjaimet -->
                     <div class="side-controls left-controls">
                         <div class="control-section">
-                            <div class="control-label">Pelaaja 1</div>
+                            <div class="control-label">👤 Pelaaja 1</div>
                             <div class="control-key">W</div>
                             <div class="control-desc">ylös</div>
                             <div class="control-key">S</div>
@@ -36,10 +31,19 @@
                         </div>
                     </div>
                     
-                    <!-- Pelikenttä -->
                     <div class="center-content">
+                        <div class="score-display">
+                            <div class="score player1">
+                                <span class="score-label">Pelaaja 1</span>
+                                <span class="score-value" id="player1-score">0</span>
+                            </div>
+                            <div class="score player2">
+                                <span class="score-label">Pelaaja 2</span>
+                                <span class="score-value" id="player2-score">0</span>
+                            </div>
+                        </div>
+                        
                         <div class="court">
-                            <!-- Robotin CSS-piirros kentän sisällä -->
                             <div class="robot">
                                 <div class="robot-head">
                                     <div class="robot-eye left"></div>
@@ -53,13 +57,16 @@
                                 <div class="robot-arm right-arm"></div>
                             </div>
                             <canvas id="gameCanvas"></canvas>
+                            <div class="start-message" id="start-message">
+                                🎮 Valitse vastustaja ja paina ENTER<br>
+                                🏆 Peli päättyy 10 pisteeseen
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- Oikean puolen ohjaimet -->
                     <div class="side-controls right-controls">
                         <div class="control-section">
-                            <div class="control-label">Pelaaja 2</div>
+                            <div class="control-label" id="player2-label">🤖 Tietokone</div>
                             <div class="control-key">↑</div>
                             <div class="control-desc">ylös</div>
                             <div class="control-key">↓</div>
@@ -68,31 +75,17 @@
                     </div>
                 </div>
                 
-                <!-- Aloitusviesti kentän alla -->
-                <div class="start-message" id="start-message">Paina välilyöntiä aloittaaksesi!</div>
-                
-                <div class="game-controls">
-                    <!-- Uudelleenkäynnistyspainike -->
-                    <button id="restart-button">Aloita uusi peli</button>
-                    
-                    <!-- Äänitilan vaihtopainike -->
-                    <div class="sound-control">
-                        <button id="sound-toggle" class="sound-on">Ääni: Päällä</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="game-footer">
-                <div class="game-info">
-                    <div class="info-title">Peliohjeet</div>
-                    <div class="info-text">
-                        Liikuta mailaa ylös ja alas ja yritä saada pallo vastustajan mailaan. Ensimmäinen pelaaja, joka saa 10 pistettä, voittaa!
+                <div class="game-footer">
+                    <div class="control-buttons">
+                        <button id="sound-toggle" class="sound-on">🔊 Ääni: Päällä</button>
+                        <button id="restart-button">🔄 Uusi peli</button>
+                        <button id="start-button">▶️ Aloita</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <script src="game.js"></script>
 </body>
 </html>

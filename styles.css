@@ -1,597 +1,700 @@
-/* Nollaus ja perustyylit*/
+/*Nollaus ja perustyylit */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  :root {
-    /* Pelin värit - vihreä-sininen teema keltaisella */
-    --primary-dark: #002233;
-    --primary: #00496a;
-    --primary-light: #0080b3;
-    --accent: #00ffd0;
-    --accent-alt: #00ccaa;
-    --text: #e0ffff;
-    --yellow: #ffdd00;
-    --pink: #ff69b4;
-    --light-green: #90ee90;
-    --green: #99EDC3;
-    --green-seafoam: #3ded97;
-    --green-seafoam-glow: 0 0 10px var(--green-seafoam), 0 0 20px var(--green-seafoam);
-    --pink-glow: 0 0 10px var(--pink), 0 0 20px var(--pink);
-    --green-glow: 0 0 10px var(--light-green), 0 0 20px var(--light-green);
-    --glow: 0 0 10px var(--accent), 0 0 20px var(--accent);
-    --glow-intense: 0 0 15px var(--accent), 0 0 30px var(--accent), 0 0 45px var(--accent);
-  }
-  body {
-    font-family: 'Courier New', monospace;
-    background-color: #000;
-    color: var(--text);
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Pelin värit - vihreä-sininen teema keltaisella */
+  --primary-dark: #002233;
+  --primary: #00496a;
+  --primary-light: #0080b3;
+  --accent: #00ffd0;
+  --accent-alt: #00ccaa;
+  --text: #e0ffff;
+  --yellow: #ffdd00;
+  --pink: #ff69b4;
+  --light-green: #90ee90;
+  --green: #99EDC3;
+  --green-seafoam: #3ded97;
+  --green-seafoam-glow: 0 0 10px var(--green-seafoam), 0 0 20px var(--green-seafoam);
+  --pink-glow: 0 0 10px var(--pink), 0 0 20px var(--pink);
+  --green-glow: 0 0 10px var(--light-green), 0 0 20px var(--light-green);
+  --glow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+  --glow-intense: 0 0 15px var(--accent), 0 0 30px var(--accent), 0 0 45px var(--accent);
+}
+
+body {
+  font-family: 'Courier New', monospace;
+  background-color: #000;
+  color: var(--text);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CRT-näyttöefekti */
+.crt {
+  width: 100%;
+  height: 100%;
+  max-width: 1200px;
+  max-height: 800px;
+  background-color: var(--primary-dark);
+  border-radius: 20px;
+  border: 4px solid var(--primary);
+  box-shadow: 0 0 15px rgba(0, 255, 208, 0.7),
+              inset 0 0 30px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  position: relative;
+}
+
+.crt::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+      rgba(18, 16, 16, 0) 50%,
+      rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.crt::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at center,
+      rgba(0, 80, 120, 0.1) 0%,
+      rgba(0, 40, 60, 0.2) 80%,
+      rgba(0, 30, 50, 0.4) 100%
+  );
+  pointer-events: none;
+  z-index: 9;
+}
+
+.game-container {
+  width: 100%;
+  height: 100vh;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  z-index: 1;
+  gap: 5px;
+  overflow-y: auto;
+}
+
+.game-main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width:1000%;
+  max-height: 90%;
+  box-sizing: border-box;
   
-  /* RT-näyttöefekti */
-  .crt {
-    width: 100%;
-    height: 100%;
-    max-width: 1200px;
-    max-height: 800px;
-    background-color: var(--primary-dark);
-    border-radius: 20px;
-    border: 4px solid var(--primary);
-    box-shadow: 0 0 15px rgba(0, 255, 208, 0.7),
-                inset 0 0 30px rgba(0, 0, 0, 0.7);
-    overflow: hidden;
-    position: relative;
-  }
+}
+
+.game-play-area {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.center-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   
-  .crt::before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-        rgba(18, 16, 16, 0) 50%,
-        rgba(0, 0, 0, 0.25) 50%
-    );
-    background-size: 100% 4px;
-    pointer-events: none;
-    z-index: 10;
+}
+
+/* Pelin otsikko */
+.game-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: var(--yellow);
+  text-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
+  text-align: center;
+  letter-spacing: 3px;
+  margin: 10px 0;
+  position: relative;
+  z-index: 3;
+  animation: pulse-title 2s infinite alternate;
+  
+}
+
+@keyframes pulse-title {
+  from { text-shadow: 0 0 10px var(--yellow); }
+  to { text-shadow: 0 0 20px var(--yellow), 0 0 30px var(--yellow); }
+}
+
+/* Pistenäyttö */
+.score-display {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 10px;
+  z-index: 4;
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 15px;
+  border: 2px solid var(--primary-light);
+  border-radius: 8px;
+  background-color: rgba(0, 40, 70, 0.7);
+  box-shadow: 0 0 10px rgba(0, 255, 208, 0.4);
+  min-width: 120px;
+}
+
+.score.player1 {
+  border-color: var(--pink);
+  box-shadow: var(--pink-glow);
+}
+
+.score.player2 {
+  border-color: var(--green-seafoam);
+  box-shadow: var(--green-seafoam-glow);
+}
+
+.score-label {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  color: var(--text);
+}
+
+.score-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--accent);
+  text-shadow: var(--glow);
+}
+
+.score.player1 .score-value {
+  color: var(--pink);
+  text-shadow: var(--pink-glow);
+}
+
+.score.player2 .score-value {
+  color: var(--green-seafoam);
+  text-shadow: var(--green-seafoam-glow);
+}
+
+/* Pelikentän tyylit */
+.court {
+  width: 100%;
+  height: 50vh;
+  border: 4px solid var(--light-green);
+  border-radius: 8px;
+  position: relative;
+  background-color: rgba(0, 30, 60, 0.4);
+  box-shadow: inset 0 0 20px rgba(144, 238, 144, 0.3);
+  overflow: hidden;
+  z-index: 3;
+}
+
+#gameCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4;
+}
+
+/* Aloitusviesti */
+.start-message {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--yellow);
+  text-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  animation: pulse-message 1.5s infinite alternate;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  border: 2px solid var(--yellow);
+}
+
+@keyframes pulse-message {
+  from {
+      opacity: 0.8;
+      text-shadow: 0 0 10px var(--yellow);
   }
-  .crt::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(
-        circle at center,
-        rgba(0, 80, 120, 0.1) 0%,
-        rgba(0, 40, 60, 0.2) 80%,
-        rgba(0, 30, 50, 0.4) 100%
-    );
-    pointer-events: none;
-    z-index: 9;
+  to {
+      opacity: 1;
+      text-shadow: 0 0 20px var(--yellow), 0 0 30px var(--yellow);
   }
+}
+
+/* Sivuohjaimet */
+.side-controls {
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 90px;
+}
+
+.control-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid var(--primary-light);
+  border-radius: 8px;
+  padding: 20px;
+  background-color: rgba(0, 40, 70, 0.7);
+  box-shadow: 0 0 10px rgba(0, 255, 208, 0.4);
+  width: 100%;
+}
+.left-controls {
+  margin-right: 15px;
+  
+}
+.right-controls {
+  margin-left: 15px;
+}
+.left-controls .control-section {
+  border-color: var(--pink);
+  box-shadow: var(--pink-glow);
+}
+
+.right-controls .control-section {
+  border-color: var(--green-seafoam);
+  box-shadow: var(--green-seafoam-glow);
+}
+
+.control-label {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: var(--accent);
+  text-shadow: 0 0 5px var(--accent);
+  text-align: center;
+}
+
+.left-controls .control-label {
+  color: var(--pink);
+  text-shadow: var(--pink-glow);
+}
+
+.right-controls .control-label {
+  color: var(--green-seafoam);
+  text-shadow: var(--green-seafoam-glow);
+}
+
+.control-key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  margin: 5px 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--accent);
+  text-shadow: 0 0 5px var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  background: rgba(0, 255, 208, 0.1);
+}
+
+.left-controls .control-key {
+  border-color: var(--pink);
+  color: var(--pink);
+  text-shadow: var(--pink-glow);
+  box-shadow: var(--pink-glow);
+  background: rgba(255, 105, 180, 0.1);
+}
+
+.right-controls .control-key {
+  border-color: var(--green-seafoam);
+  color: var(--green-seafoam);
+  text-shadow: var(--green-seafoam-glow);
+  box-shadow: var(--green-seafoam-glow);
+  background: rgba(61, 237, 151, 0.1);
+}
+
+.control-desc {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: var(--text);
+  text-align: center;
+}
+
+/* Pelin ohjaimet */
+.game-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  z-index: 4;
+  margin: 20px 0;
+}
+
+.game-controls label {
+  
+  color: var(--accent);
+  font-size: 1.2rem;
+  text-shadow: 0 0 5px var(--accent);
+}
+
+/* Pelaajavalintapainikkeen muotoilu */
+#opponent-select {
+  padding: 10px 20px;
+  background-color: var(--accent);
+  color: var(--primary-dark);
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  box-shadow: 0 0 10px var(--accent);
+  transition: all 0.3s ease;
+}
+
+#opponent-select:hover {
+  box-shadow: 0 0 15px var(--accent), 0 0 25px var(--accent);
+  transform: scale(1.05);
+}
+
+/* Painikkeet */
+.game-footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  z-index: 4;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+#sound-toggle.sound-on {
+  background-color: var(--accent);
+  color: var(--primary-dark);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+#sound-toggle.sound-off {
+  background-color: #666;
+  color: var(--text);
+  box-shadow: 0 0 10px #555;
+}
+
+#restart-button {
+  background-color: var(--yellow);
+  color: var(--primary-dark);
+  box-shadow: 0 0 10px var(--yellow);
+}
+
+#start-button {
+  background-color: var(--pink);
+  color: var(--primary-dark);
+  box-shadow: 0 0 10px var(--pink);
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px currentColor, 0 0 25px currentColor;
+}
+
+      
+/* Robottitausta CSS:llä */
+.robot {
+  position: absolute;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  z-index: 2;
+  opacity: 0.25;
+  width: 300px;
+  height: 400px;
+  pointer-events: none;
+}
+
+.robot-head {
+  width: 150px;
+  height: 120px;
+  background: linear-gradient(to bottom, var(--primary-light), var(--primary));
+  border-radius: 30px 30px 10px 10px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid var(--yellow);
+  box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
+}
+
+.robot-eye {
+  width: 30px;
+  height: 30px;
+  background-color: var(--yellow);
+  border-radius: 50%;
+  position: absolute;
+  top: 40px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5), 0 0 15px var(--yellow);
+  animation: blink 4s infinite;
+}
+
+@keyframes blink {
+  0%, 45%, 55%, 100% {
+      opacity: 1;
+      background-color: var(--green);
+  }
+  50% {
+      opacity: 0.3;
+      background-color: var(--primary);
+  }
+}
+
+.robot-eye.left {
+  left: 30px;
+  animation-delay: 0.5s;
+}
+
+.robot-eye.right {
+  right: 30px;
+}
+
+.robot-antenna {
+  width: 10px;
+  height: 40px;
+  background-color: var(--yellow);
+  position: absolute;
+  top: -44px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 10px;
+  box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
+}
+
+.robot-antenna::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: var(--yellow);
+  border-radius: 50%;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
+  animation: pulse-yellow 2s infinite alternate;
+}
+
+.robot-body {
+  width: 180px;
+  height: 200px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border-radius: 20px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 10px;
+  border: 4px solid var(--yellow);
+  box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
+  animation: hover 3s ease-in-out infinite;
+}
+
+@keyframes hover {
+  0%, 100% {
+      transform: translateX(-50%) translateY(0);
+  }
+  50% {
+      transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+.robot-panel {
+  width: 100px;
+  height: 80px;
+  background-color: var(--primary-dark);
+  border-radius: 10px;
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid var(--accent);
+  box-shadow: inset 0 0 10px var(--accent);
+}
+
+.robot-panel::before, .robot-panel::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--yellow);
+  border-radius: 50%;
+  top: 20px;
+  box-shadow: 0 0 8px var(--yellow);
+}
+
+.robot-panel::before {
+  left: 20px;
+  animation: pulse-yellow 1s infinite alternate;
+}
+
+.robot-panel::after {
+  right: 20px;
+  animation: pulse-yellow 1.3s infinite alternate;
+}
+
+.robot-arm {
+  width: 30px;
+  height: 150px;
+  background: linear-gradient(to bottom, var(--accent), var(--primary-light));
+  position: absolute;
+  top: 130px;
+  border-radius: 10px;
+  border: 4px solid var(--yellow);
+  box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
+}
+
+.robot-arm.left-arm {
+  left: -10px;
+  transform: rotate(20deg);
+}
+
+.robot-arm.right-arm {
+  right: -10px;
+  transform: rotate(-20deg);
+}
+
+@keyframes pulse-yellow {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+}
+
+/* Responsiivinen säätö */
+@media (max-width: 768px) {
   .game-container {
-    width: 100%;
-    height: 100%;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    position: relative;
-    z-index: 1;
-    gap: 10px;
-    overflow-y: auto;
+      padding: 5px;
+      gap: 5px;
   }
-  .game-main {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    max-width: 90%;
-    box-sizing: border-box;
-  }
-  .game-play-area {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-  }
-  .center-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .side-controls {
-    width: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
-  }
-  .left-controls {
-    margin-right: 15px;
-  }
-  .right-controls {
-    margin-left: 15px;
-  }
-  .left-controls .control-section {
-    border-color: var(--pink);
-    box-shadow: 0 0 10px rgba(255, 105, 180, 0.4);
-  }
-  .left-controls .control-label {
-    color: var(--pink);
-    text-shadow: 0 0 5px var(--pink);
-  }
-  .left-controls .control-key {
-    border-color: var(--pink);
-    color: var(--pink);
-    text-shadow: 0 0 5px var(--pink);
-    box-shadow: 0 0 8px var(--pink);
-  }
-  .right-controls .control-section {
-    border-color: var(--green-seafoam);
-    box-shadow: 0 0 6px rgba(32, 224, 128, 0.4);
-  }
-  .right-controls .control-label {
-    color: var(--green-seafoam);
-    text-shadow: 0 0 3px var(--green-seafoam);
-  }
-  .right-controls .control-key {
-    border-color: var(--green-seafoam);
-    color: var(--green-seafoam);
-    text-shadow: 0 0 3px var(--green-seafoam);
-    box-shadow: 0 0 5px var(--green-seafoam);
-  }
-  .game-footer {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 10px;
-    max-width: 800px;
-    box-sizing: border-box;
-  }
-  
-  /* Pelin otsikko */
+
   .game-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--yellow);
-    text-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
-    text-align: center;
-    letter-spacing: 2px;
-    margin-top: 20px;
-    position: relative;
-    z-index: 3;
-    width: 100%;
-    max-width: 700px;
+      font-size: 1.5rem;
+      margin: 10px 0;
   }
-  
-  /* Pelikentän tyylit */
+
   .court {
-    width: 100%;
-    height: 40vh;
-    border: 4px solid var(--light-green);
-    border-radius: 4px;
-    position: relative;
-    background-color: rgba(0, 30, 60, 0.4);
-    box-shadow: inset 0 0 20px rgba(144, 238, 144, 0.3);
-    overflow: hidden;
-    z-index: 3;
-    margin: 15px 0;
+      height: 300px;
   }
-  
-  #gameCanvas {
-    width: 100%;
-    height: 100%;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 3;
+
+  .side-controls {
+      width: 80px;
   }
-  
-  /* Pistenäyttö */
-  .score-container {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    margin: 20px 0;
-    z-index: 4;
-    position: relative;
+
+  .control-key {
+      width: 35px;
+      height: 35px;
+      font-size: 1rem;
   }
-  
-  .score {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 20px;
-    border: 2px solid var(--primary-light);
-    border-radius: 8px;
-    background-color: rgba(0, 40, 70, 0.5);
-    box-shadow: 0 0 10px rgba(0, 255, 208, 0.4);
-  }
-  
-  .score-label {
-    font-size: 1.2rem;
-    margin-bottom: 5px;
-    color: var(--text);
-  }
-  
+
   .score-value {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--accent);
-    text-shadow: var(--glow);
+      font-size: 2rem;
+  }
+
+  .start-message {
+      font-size: 1.2rem;
+      padding: 15px;
+  }
+
+  .control-buttons {
+      gap: 10px;
+  }
+
+  button {
+      padding: 10px 15px;
+      font-size: 1rem;
+      min-width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-play-area {
+      flex-direction: column;
+      gap: 10px;
   }
   
-  /* Pelin ohjaimet */
-  .game-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-top: 20px;
-    gap: 20px;
-    z-index: 4;
+  .side-controls {
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-around;
   }
   
   .control-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 2px solid var(--primary-light);
-    border-radius: 8px;
-    padding: 10px;
-    background-color: rgba(0, 40, 70, 0.5);
-    box-shadow: 0 0 10px rgba(0, 255, 208, 0.4);
-    flex: 1;
+      width: 45%;
+      padding: 10px;
   }
-  
-  .control-label {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: var(--accent);
-    text-shadow: 0 0 5px var(--accent);
+
+  .court {
+      height: 250px;
+      width: 100%;
   }
-  
-  .control-key {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border: 2px solid var(--accent);
-    border-radius: 6px;
-    margin: 5px 0;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--accent);
-    text-shadow: 0 0 5px var(--accent);
-    box-shadow: 0 0 8px var(--accent);
+
+  .game-title {
+      font-size: 1.2rem;
   }
-  
-  .control-desc {
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-    color: var(--text);
+
+  .score-display {
+      max-width: 300px;
   }
-  
-  /* Aloitusviesti */
-  .start-message {
-    font-size: 1.6rem;
-    color: var(--yellow);
-    text-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
-    text-align: center;
-    padding: 8px;
-    position: relative;
-    z-index: 5;
-    animation: pulse-yellow 1.5s infinite alternate;
-    width: 100%;
+
+  .control-buttons {
+      flex-direction: column;
+      align-items: center;
   }
-  
-  @keyframes pulse-yellow {
-    from {
-        opacity: 0.7;
-        text-shadow: 0 0 5px var(--yellow);
-    }
-    to {
-        opacity: 1;
-        text-shadow: 0 0 15px var(--yellow), 0 0 30px var(--yellow), 0 0 45px var(--yellow);
-    }
-  }
-  
-  /* Pelin info */
-  .game-info {
-    width: 90%;
-    border: 2px solid var(--primary-light);
-    border-radius: 8px;
-    padding: 10px;
-    background-color: rgba(0, 40, 70, 0.5);
-    box-shadow: 0 0 10px rgba(0, 255, 208, 0.4);
-    position: relative;
-    z-index: 3;
-    margin-bottom: 10px;
-  }
-  
-  .info-title {
-    font-size: 1.2rem;
-    margin-bottom: 5px;
-    color: var(--accent);
-    text-shadow: 0 0 5px var(--accent);
-    text-align: center;
-  }
-  
-  .info-text {
-    font-size: 0.9rem;
-    line-height: 1.3;
-    color: var(--text);
-    text-align: center;
-  }
-  
-  /* Robottitausta CSS:llä */
-  .robot {
-    position: absolute;
-    top: 53%;
-    left: 50%;
-    transform: translate(-50%, -40%);
-    z-index: 2;
-    opacity: 0.25;
-    width: 300px;
-    height: 400px;
-    pointer-events: none;
-  }
-  
-  .robot-head {
-    width: 150px;
-    height: 120px;
-    background: linear-gradient(to bottom, var(--primary-light), var(--primary));
-    border-radius: 30px 30px 10px 10px;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 4px solid var(--yellow);
-    box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
-  }
-  
-  .robot-eye {
-    width: 30px;
-    height: 30px;
-    background-color: var(--yellow);
-    border-radius: 50%;
-    position: absolute;
-    top: 40px;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5), 0 0 15px var(--yellow);
-    animation: blink 4s infinite;
-  }
-  
-  @keyframes blink {
-    0%, 45%, 55%, 100% {
-        opacity: 1;
-        background-color: var(--green);
-    }
-    50% {
-        opacity: 0.3;
-        background-color: var(--primary);
-    }
-  }
-  
-  .robot-eye.left {
-    left: 30px;
-    animation-delay: 0.5s;
-  }
-  
-  .robot-eye.right {
-    right: 30px;
-  }
-  
-  .robot-antenna {
-    width: 10px;
-    height: 40px;
-    background-color: var(--yellow);
-    position: absolute;
-    top: -44px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 10px;
-    box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
-  }
-  
-  .robot-antenna::after {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: var(--yellow);
-    border-radius: 50%;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
-    animation: pulse-yellow 2s infinite alternate;
-  }
-  
-  .robot-body {
-    width: 180px;
-    height: 200px;
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    border-radius: 20px;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 10px;
-    border: 4px solid var(--yellow);
-    box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
-    animation: hover 3s ease-in-out infinite;
-  }
-  
-  @keyframes hover {
-    0%, 100% {
-        transform: translateX(-50%) translateY(0);
-    }
-    50% {
-        transform: translateX(-50%) translateY(-10px);
-    }
-  }
-  
-  .robot-panel {
-    width: 100px;
-    height: 80px;
-    background-color: var(--primary-dark);
-    border-radius: 10px;
-    position: absolute;
-    top: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 2px solid var(--accent);
-    box-shadow: inset 0 0 10px var(--accent);
-  }
-  
-  .robot-panel::before, .robot-panel::after {
-    content: "";
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: var(--yellow);
-    border-radius: 50%;
-    top: 20px;
-    box-shadow: 0 0 8px var(--yellow);
-  }
-  
-  .robot-panel::before {
-    left: 20px;
-    animation: pulse-yellow 1s infinite alternate;
-  }
-  
-  .robot-panel::after {
-    right: 20px;
-    animation: pulse-yellow 1.3s infinite alternate;
-  }
-  
-  .robot-arm {
-    width: 30px;
-    height: 150px;
-    background: linear-gradient(to bottom, var(--accent), var(--primary-light));
-    position: absolute;
-    top: 130px;
-    border-radius: 10px;
-    border: 4px solid var(--yellow);
-    box-shadow: 0 0 10px var(--yellow), 0 0 20px var(--yellow);
-  }
-  
-  .robot-arm.left-arm {
-    left: -10px;
-    transform: rotate(20deg);
-  }
-  
-  .robot-arm.right-arm {
-    right: -10px;
-    transform: rotate(-20deg);
-  }
-  
-  /* Painikkeen muotoilu */
-  #sound-toggle {
-    padding: 10px 20px;
-    background-color: var(--accent);
-    color: var(--primary-dark);
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    transition: all 0.3s ease;
-  }
-  
-  #sound-toggle.sound-on {
-    background-color: var(--accent);
-    box-shadow: 0 0 10px var(--accent);
-  }
-  
-  #sound-toggle.sound-off {
-    background-color: #666;
-    box-shadow: 0 0 10px #555;
-  }
-  
-  #restart-button {
-    padding: 10px 20px;
-    background-color: var(--yellow);
-    color: var(--primary-dark);
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    box-shadow: 0 0 10px var(--yellow);
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-  }
-  
-  /* Responsiivinen säätö */
-  @media (max-width: 768px) {
-    .game-container {
-        padding: 10px;
-        gap: 10px;
-    }
-    .game-title {
-        font-size: 1.5rem;
-        margin-top: 10px;
-    }
-    .court {
-        height: 30vh;
-    }
-    .side-controls {
-        width: 80px;
-        margin-top: 20px;
-    }
-    .control-key {
-        width: 30px;
-        height: 30px;
-        font-size: 1rem;
-    }
-    .score-value {
-        font-size: 2rem;
-    }
-    .start-message {
-        font-size: 1.2rem;
-    }
-    .game-controls {
-        flex-direction: column;
-        gap: 10px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .game-play-area {
-        flex-direction: column;
-    }
-    .side-controls {
-        width: 100%;
-        flex-direction: row;
-        justify-content: space-around;
-        margin: 10px 0;
-    }
-    .control-section {
-        width: 45%;
-    }
-  }
+}
